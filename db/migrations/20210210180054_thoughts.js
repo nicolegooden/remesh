@@ -3,7 +3,7 @@ exports.up = function(knex) {
     .createTable('thoughts', function (table) {
       table.bigInteger('thought_id').primary();
       table.string('text');
-      table.date('date_sent').defaultTo(knex.fn.now());
+      table.string('date_sent').defaultTo(knex.fn.now());
       table.time('time_sent');
       table.bigInteger('message_id').notNullable()
         .references('message_id').inTable('messages').onDelete('cascade');

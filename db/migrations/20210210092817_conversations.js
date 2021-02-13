@@ -3,7 +3,7 @@ exports.up = function(knex) {
     .createTable('conversations', function (table) {
       table.bigInteger('conversation_id').primary();
       table.string('title');
-      table.date('start_date').defaultTo(knex.fn.now());
+      table.string('start_date').defaultTo(knex.fn.now());
     }) 
 }
   
