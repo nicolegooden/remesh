@@ -4,15 +4,27 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest --watchAll"
   },
   "keywords": [],
-  "author": "",
+  "author": "Nicole Gooden",
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.17.1",
+    "jest": "^26.6.3",
     "knex": "^0.21.17",
-    "pg": "^8.5.1"
+    "pg": "^8.5.1",
+    "supertest": "^6.1.3"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.16",
+    "@babel/node": "^7.12.16",
+    "@babel/polyfill": "^7.12.1",
+    "@babel/preset-env": "^7.12.16",
+    "babel-core": "^6.26.3",
+    "babel-jest": "^26.6.3",
+    "nodemon": "^2.0.7",
+    "regenerator-runtime": "^0.13.7"
   }
 }
