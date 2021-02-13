@@ -17,3 +17,19 @@ describe('GET /api/v1/conversations', () => {
   })
 })
 
+describe('GET /api/v1/messages/:conversation', () => {
+  it('should return a 200 and messages for single conversation', async () => {
+    const expectedMessages = await database('messages')
+    .where('conversation_id', '1')
+    .select();
+
+    const res = await request(app).get('/api/v1/messages/1');
+    const result = res.body;
+
+    console.log('result', result)
+
+    expect(res.status).toBe(200);
+    expect(result).toEqual(expectedMessages);
+  })
+})
+
