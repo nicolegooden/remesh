@@ -37,3 +37,23 @@ describe('GET /api/v1/messages/:conversation', () => {
   })
 })
 
+describe('GET /api/v1/thoughts/:message', () => {
+  it('should return a 200 and thoughts for single message', async () => {
+    const expectedThoughts = await database('thoughts')
+    .where('message_id', '2').select();
+    const res = await request(app).get('/api/v1/thoughts/2');
+    const result = res.body;
+
+    expect(res.status).toBe(200);
+    expect(result).toEqual(expectedThoughts);
+  })
+
+  it('should return a 404 and the message "No thoughts found with the message id 4"', async () => {
+    const response = await request(app).get('/api/v1/thoughts/4');
+    const { error } = response.body;
+
+    expect(response.status).toBe(404);
+    expect(error).toEqual('No thoughts found with the message id 4');
+  })
+})
+
