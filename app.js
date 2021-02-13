@@ -27,8 +27,8 @@ app.get("/api/v1/messages/:conversation", async (req, res) => {
     if (messages.length) {
       res.status(200).json(messages);
     } else {
-      express.status(404).json({
-        error: `No messages found for the conversation id ${req.params.conversation}.`   
+      res.status(404).json({
+        error: `No messages found with the conversation id ${req.params.conversation}`   
       })
     }
   } catch (e) {
@@ -44,8 +44,8 @@ app.get("/api/v1/thoughts/:message", async (req, res) => {
     if (thoughts.length) {
       res.status(200).json(thoughts);
     } else {
-      express.status(404).json({
-        error: `No thoughts found for the message id ${req.params.message}.`   
+      res.status(404).json({
+        error: `No thoughts found with the message id ${req.params.message}`   
       })
     }
   } catch (e) {
