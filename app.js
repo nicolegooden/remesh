@@ -77,7 +77,7 @@ app.post("/api/v1/conversations", async (req, res) => {
 app.post("/api/v1/messages/:conversation", async (req, res) => {
   const message_id = Date.now();
   const { text } = req.body;
-  const { conversation } = req.params
+  const { conversation } = req.params;
   const message = {
     text: text, 
     conversation_id: conversation,
@@ -92,6 +92,29 @@ app.post("/api/v1/messages/:conversation", async (req, res) => {
   try {
     await database('messages').insert(message);
     return res.status(201).json(message);
+  } catch (e) {
+    console.log(e)
+  }
+})
+
+app.post("/api/v1/thoughts/:message", async (req, res) => {
+  const thought_id = Date.now();
+  const { text } = req.body;
+  const { message } = req.params;
+  const thought = {
+    text: text, 
+    message_id: message,
+    thought_id: thought_id
+  }
+
+  if (!text || typeof text !== 'string') {
+    return res.status(422)
+    .json({error: `Expected format: { text: <String> }. You're missing text!`})
+  }
+
+  try {
+    await database('thoughts').insert(thought);
+    return res.status(201).json(thought);
   } catch (e) {
     console.log(e)
   }
