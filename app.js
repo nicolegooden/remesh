@@ -53,17 +53,21 @@ app.get("/api/v1/thoughts/:message", async (req, res) => {
   }
 })
 
-app.post("/api/v1/conversations", async (request, res) => {
+app.post("/api/v1/conversations", async (req, res) => {
   const conversation_id = Date.now();
-  const conversation = request.body;
+  const { title } = req.body;
+  const conversation = {
+    title: title, 
+    conversation_id: conversation_id
+  }
 
-  if (!conversation.title) {
+  if (!title || typeof title !== 'string') {
     return res.status(422)
     .json({error: `Expected format: { title: <String> }. You're missing a title!`})
   }
 
   try {
-    const title = await database('conversations').insert({title, conversation_id})
+    await database('conversations').insert(conversation)
     return res.status(201).json(conversation)
   } catch (e) {
     console.log(e)
