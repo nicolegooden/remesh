@@ -76,6 +76,16 @@ describe('POST /api/v1/conversations', () => {
     expect(conversation[0].title).toEqual('Remesh');
   })
 
-  
+  it('should be a 422 if title is missing', async () => {
+    const newConversation = {
+      conversation_id: Date.now()
+    }
+
+    const res = await request(app).post('/api/v1/conversations').send(newConversation);
+    const { error } = res.body;
+
+    expect(res.status).toBe(422);
+    expect(error).toEqual('Expected format: { title: <String> }. You\'re missing a title!');
+  })
 })
 
