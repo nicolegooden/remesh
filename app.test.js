@@ -57,3 +57,25 @@ describe('GET /api/v1/thoughts/:message', () => {
   })
 })
 
+describe('POST /api/v1/conversations', () => {
+  beforeEach(async () => {
+    await database.seed.run();
+  })
+
+  it('should post a new conversation', async () => {
+    const newConversation = { 
+      title: 'Remesh', 
+      conversation_id: Date.now()
+    }
+    
+    const res = await request(app).post('/api/v1/conversations').send(newConversation);
+    const conversation = await database('conversations')
+    .where('conversation_id', res.body.conversation_id)
+
+    expect(res.status).toBe(201);
+    expect(conversation[0].title).toEqual('Remesh');
+  })
+
+  
+})
+
