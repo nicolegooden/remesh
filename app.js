@@ -120,7 +120,4 @@ app.post("/api/v1/thoughts/:message", async (req, res) => {
   }
 })
 
-
-
-
 module.exports = app;
