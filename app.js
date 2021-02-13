@@ -74,6 +74,29 @@ app.post("/api/v1/conversations", async (req, res) => {
   }
 })
 
+app.post("/api/v1/messages/:conversation", async (req, res) => {
+  const message_id = Date.now();
+  const { text } = req.body;
+  const { conversation } = req.params
+  const message = {
+    text: text, 
+    conversation_id: conversation,
+    message_id: message_id
+  }
+
+  if (!text || typeof text !== 'string') {
+    return res.status(422)
+    .json({error: `Expected format: { text: <String> }. You're missing text!`})
+  }
+
+  try {
+    await database('messages').insert(message);
+    return res.status(201).json(message);
+  } catch (e) {
+    console.log(e)
+  }
+})
+
 
 
 
