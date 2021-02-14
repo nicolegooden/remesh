@@ -1,6 +1,13 @@
 # Take Home Project for Junior Software Engineer Position at Remesh
-
 ---
+
+**Technologies**
+
+* Database: PostgreSQL
+* Query Builder: Knex
+* Environment: Node.js
+* API: Express.js
+
 **Install PostgreSQL globally and set up local database:**
 
 * In terminal command line run the following commands:
@@ -27,6 +34,14 @@
 * Run `npm start` or `node server.js` to start the server!
 * Run `npm test` to run the test suite in `app.test.js`.
 
+**Endpoints**
+All endpoints have a prefix of `localhost:3000`
+
+* GET conversations: `/api/v1/conversations`
+* GET messages per conversation: `/api/v1/messages/:conversation`
+* GET thoughts per message: `/api/v1/thoughts/:message`
+
+User can also POST a new conversation, message, and thought via the endpoints documented above.
 
 
 
