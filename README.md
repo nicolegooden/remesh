@@ -31,12 +31,12 @@
 * `knex seed:run` will run all seed files to populate tables with data
 
 **Final Step:**
-* Run `npm start` or `node server.js` to start the server!
+* Run `npm start` or `node server.js` to start the server! If it starts successfully, this message will be logged: `Server is running on localhost:3000.`
 * Run `npm test` to run the test suite in `app.test.js`.
 
 **Endpoints**
 
-All endpoints have a prefix of `localhost:3000`
+All endpoints have a prefix of `localhost:3000`.
 
 * GET conversations: `/api/v1/conversations`
 * GET messages per conversation: `/api/v1/messages/:conversation`
