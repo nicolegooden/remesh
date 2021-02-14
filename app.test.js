@@ -89,3 +89,72 @@ describe('POST /api/v1/conversations', () => {
   })
 })
 
+describe('POST /api/v1/messages/:conversation', () => {
+  beforeEach(async () => {
+    await database.seed.run();
+  })
+
+  it('should post a new message', async () => {
+    const newMessage = { 
+      text: 'Dogs are the absolute BEST!', 
+      message_id: Date.now(),
+      conversation_id: 1
+    }
+    
+    const res = await request(app).post('/api/v1/messages/1').send(newMessage);
+    const message = await database('messages')
+    .where('message_id', res.body.message_id)
+
+    expect(res.status).toBe(201);
+    expect(message[0].text).toEqual('Dogs are the absolute BEST!');
+  })
+
+  it('should be a 422 if text is missing', async () => {
+    const newMessage = {
+      message_id: Date.now(),
+      conversation_id: 2
+    }
+
+    const res = await request(app).post('/api/v1/messages/2').send(newMessage);
+    const { error } = res.body;
+
+    expect(res.status).toBe(422);
+    expect(error).toEqual('Expected format: { text: <String> }. You\'re missing text!');
+  })
+})
+
+describe('POST /api/v1/messages/:conversation', () => {
+  beforeEach(async () => {
+    await database.seed.run();
+  })
+
+  it('should post a new thought', async () => {
+    const newThought = { 
+      text: 'I disagree, Denmark is the best place!', 
+      thought_id: Date.now(),
+      message_id: 3
+    }
+    
+    const res = await request(app).post('/api/v1/thoughts/3').send(newThought);
+    const thought = await database('thoughts')
+    .where('thought_id', res.body.thought_id)
+
+    expect(res.status).toBe(201);
+    expect(thought[0].text).toEqual('I disagree, Denmark is the best place!');
+  })
+
+  it('should be a 422 if text is missing', async () => {
+    const newThought = {
+      thought_id: Date.now(),
+      message_id: 2
+    }
+
+    const res = await request(app).post('/api/v1/thoughts/2').send(newThought);
+    const { error } = res.body;
+
+    expect(res.status).toBe(422);
+    expect(error).toEqual('Expected format: { text: <String> }. You\'re missing text!');
+  })
+})
+
+
