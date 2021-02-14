@@ -35,6 +35,7 @@
 * Run `npm test` to run the test suite in `app.test.js`.
 
 **Endpoints**
+
 All endpoints have a prefix of `localhost:3000`
 
 * GET conversations: `/api/v1/conversations`
