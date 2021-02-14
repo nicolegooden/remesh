@@ -64,7 +64,7 @@ describe('POST /api/v1/conversations', () => {
 
   it('should post a new conversation', async () => {
     const newConversation = { 
-      title: 'Remesh', 
+      title: 'Taxes', 
       conversation_id: Date.now()
     }
     
@@ -73,7 +73,7 @@ describe('POST /api/v1/conversations', () => {
     .where('conversation_id', res.body.conversation_id)
 
     expect(res.status).toBe(201);
-    expect(conversation[0].title).toEqual('Remesh');
+    expect(conversation[0].title).toEqual('Taxes');
   })
 
   it('should be a 422 if title is missing', async () => {

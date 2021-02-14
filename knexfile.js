@@ -1,7 +1,7 @@
 module.exports = {
   development: {
     client: 'pg',
-    connection: 'postgres://localhost/remesh',
+    connection: 'postgres://localhost/take_home',
     migrations: {
       directory: './db/migrations'
     },
@@ -13,7 +13,7 @@ module.exports = {
 
   test: {
     client: 'pg',
-    connection: 'postgres://localhost/remesh',
+    connection: 'postgres://localhost/take_home',
     migrations: {
       directory: './db/migrations'
     },
