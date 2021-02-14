@@ -25,6 +25,7 @@
 
 **Final Step:**
 * Run `npm start` or `node server.js` to start the server!
+* Run `npm test` to run the test suite in `app.test.js`.
 
 
 
